@@ -30,6 +30,7 @@ btnCancel.addEventListener("click", (e) => {
   food = history[history.length - 1][1];
   detik = history[history.length - 1][2];
   menit = history[history.length - 1][3];
+  direction = history[history.length - 1][4];
   gas();
   sleder.value = 4;
 });
@@ -38,6 +39,7 @@ sleder.addEventListener("input", (e) => {
   food = history[e.target.value][1];
   detik = history[e.target.value][2];
   menit = history[e.target.value][3];
+  direction = history[e.target.value][4];
   draw();
   timer.textContent = `${jam}:${menit.toString().padStart(2, 0)};${detik
     .toString()
@@ -47,7 +49,8 @@ btnRewindActive.addEventListener("click", (e) => {
   rewind.style.display = "none";
   sleder.style.display = "none";
   btnRewind.style.display = "";
-  start();
+  sleder.value = 4;
+  gas();
 });
 
 // inisialisasi
@@ -105,6 +108,7 @@ function draw() {
 
 function move() {
   let head = { x: snake[0].x, y: snake[0].y };
+  console.log(`head : ${JSON.stringify(head)}`);
 
   if (direction == "right") head.x += 1;
   if (direction == "top") head.y -= 1;
@@ -127,7 +131,18 @@ function move() {
   }
 
   if (snake.some((s) => s.x == head.x && s.y == head.y)) {
+    console.log(`head : ${JSON.stringify(head)}`);
+    console.log(`snake : ${JSON.stringify(snake)}`);
+
     alert("Game Berakhir anda meiliki skor " + skorValue);
+    snake = [
+      { x: 24, y: 15 },
+      { x: 23, y: 15 },
+      { x: 22, y: 15 },
+      { x: 21, y: 15 },
+      { x: 20, y: 15 },
+      { x: 19, y: 15 },
+    ];
     location.reload();
   }
 
@@ -161,7 +176,7 @@ function start() {
       jam++;
     }
 
-    timer.textContent = `${jam}:${menit.toString().padStart(2, 0)};${detik
+    timer.textContent = `${jam}:${menit.toString().padStart(2, 0)}:${detik
       .toString()
       .padStart(2, 0)}`;
 
@@ -170,6 +185,7 @@ function start() {
       JSON.parse(JSON.stringify(food)),
       detik,
       menit,
+      direction,
     ]);
     if (history.length == 6) history.shift();
   }, 1000);
