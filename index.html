@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>client side</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container-board">
+      <div class="header">
+        <h4>
+          skor :
+          <p id="skor">6</p>
+        </h4>
+        <h2>PYTHON</h2>
+        <h4>
+          Timer :
+          <p id="timer">00:00</p>
+        </h4>
+      </div>
+      <canvas width="960" height="600" id="canvas"></canvas>
+      <div class="container-rewind">
+        <button class="btn-rewind">Rewind</button>
+        <input
+          type="range"
+          name=""
+          id="sleder"
+          min="0"
+          max="4"
+          value="4"
+          style="display: none"
+        />
+        <div class="rewind" style="display: none">
+          <button class="btn-cancel" id="btn-cancel">Cancel</button>
+          <button class="btn-rewind" id="btn-rewind">Rewind</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
